@@ -76,6 +76,11 @@ body h1, h2, h3, p, li  {
 }
 
 h1{
+  font-size: 80px;
+  color: #FFD416;
+  font-weight: bolder;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
   padding-top:25%;
   text-align: center;
   width: 100%;
