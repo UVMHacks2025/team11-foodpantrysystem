@@ -29,7 +29,13 @@
         <th>allergens</th>
     </tr>
     {% for item in items %}
+    {% if item.quantity <= 5 %}
+    <tr style = "background-color: red">
+    {%elif item.quantity <= 10%}
+    <tr style = "background-color: yellow">
+    {%else%}
     <tr>
+    {%endif%}
         <td>{{item.itemName}}  <form action = "/plus/{{item.item_id}}" method ="POST"><input type = "submit" class = "plus" id ="plus" name = "plus" value = "+"></form><form method = 'POST' action = '/minus/{{item.item_id}}'><input type="submit" name = "minus" class = "minus" id = "minus" value = "-"></form></td>
         <td>{{item.category}} </td>
         <td>{{item.quantity}} </td>
@@ -68,6 +74,7 @@
     </tr>
     {% endfor %}
 </table>
+
 
 
 
