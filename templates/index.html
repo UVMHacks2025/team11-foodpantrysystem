@@ -6,7 +6,6 @@
 <img id = "logo" src = "static/rally_cat_cupboard.png"></img>
 <h1 class = "title">Inventory Tracker</h1>
 
-
 <nav class="navbar">
     <!-- Fix all urls -->
     <a href="/"></a>
@@ -31,7 +30,7 @@
     </tr>
     {% for item in items %}
     <tr>
-        <td>{{item.itemName}} <button class = "plus" id ="+">+</button><button class = "minus" id = "-">-</button></td>
+        <td>{{item.itemName}}  <form action = "/plus/{{item.item_id}}" method ="POST"><input type = "submit" class = "plus" id ="plus" name = "plus" value = "+"></form><form method = 'POST' action = '/minus/{{item.item_id}}'><input type="submit" name = "minus" class = "minus" id = "minus" value = "-"></form></td>
         <td>{{item.category}} </td>
         <td>{{item.quantity}} </td>
         <td>
