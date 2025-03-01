@@ -15,8 +15,8 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     conn.commit()
     conn.close()
 
-def query_items(search, filters):
-    conn = sqlite3.connect('rally_cat.db')
+def query_items(search):
+    conn = sqlite3.connect('Instance/rally_cat.db')
     cursor = conn.cursor()
     
     #base query
@@ -29,8 +29,9 @@ def query_items(search, filters):
         params.append(f"%{search}%")
     
     #add filter conditions
-    for filter_key in filters:
-        query += f" AND {filter_key} = 1"
+
+    #for filter_key in filters:
+    #    query += f" AND {filter_key} = 1"
     
     cursor.execute(query, params)
     results = cursor.fetchall()
@@ -71,9 +72,11 @@ class Item(db.Model):
 def index():
     # something was added or removed
     if request.method == 'POST':
-        search = request.form['']
-        filters = request.form['']
-        results = query_items(search, filters)
+        print("post")
+        search = request.form['site-search']
+        #filters = request.form['']
+        results = Item.query.filter_by(itemName = search).all()
+        print(results)
         return render_template('index.html', items = results)
     items = Item.query.all()
     print(items)
