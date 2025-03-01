@@ -10,18 +10,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 def index():
     return render_template('index.html')
 
-<<<<<<< HEAD
-@app.route('/View')
-def View():
-    return render_template("View.html")
-    
-=======
 @app.route('/add', methods=['POST', 'GET'])
 def add():
     return render_template('add.html')
 
 
->>>>>>> 99ebb3e5af6b465df2040ce91aebef8f35885fa7
 
 if __name__ == "__main__":
     app.run(debug=True, port=8005)
