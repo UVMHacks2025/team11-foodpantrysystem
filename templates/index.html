@@ -3,9 +3,8 @@
 
 {% block body %}
 
-<img id = "logo" src = "../static/rally_cat_cupboard.png"></img>
+<img id = "logo" src = "static/rally_cat_cupboard.png"></img>
 <h1 class = "title">Inventory Tracker</h1>
-
 
 <nav class="navbar">
     <!-- Fix all urls -->
@@ -23,10 +22,10 @@
 
 
 <form action = '/' method="POST">
-<label for="site-search">Search the site:</label>
+<label for="site-search" id = "button">Search the site:</label>
 <input type="search" id="site-search" name="site-search" />
+<input type = "submit" value = "Search" id = "button2">
 
-<input type = "submit" value = "Search">
 </form>
 
 <table>
@@ -60,21 +59,19 @@
             {% endif %}
         </td>
         <td>
-        {% if item.eggs == 1 %}
-         eggs <br>
-        {%endif %}
-        {% if item.fish == 1%}
-        fish <br>
-        {% endif %}
-        {%if item.soy == 1%}
-        soy<br>
-        {%endif%}
-        {% if item.treenuts == 1%}
-        treenuts <br>
-        {%endif%}
-        {% if items.shellfish == 1%}
-        shellfish <br>
-        {%endif%}
+            {% if item.eggs == 1 %}
+            eggs <br>
+            {% elif item.fish == 1%}
+            fish <br>
+            {%elif item.soy == 1%}
+            soy<br>
+            {%elif item.treenuts == 1%}
+            treenuts <br>
+            {%elif items.shellfish == 1%}
+            shellfish <br>
+            {%else%}
+            ⚫ <br>
+            {%endif%}
         </td>
     </tr>
     {% endfor %}
