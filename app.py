@@ -71,7 +71,10 @@ class Item(db.Model):
 def index():
     # something was added or removed
     if request.method == 'POST':
-        pass
+        search = request.form['']
+        filters = request.form['']
+        results = query_items(search, filters)
+        return render_template('index.html', items = results)
     items = Item.query.all()
     print(items)
     return render_template('index.html', items = items)
