@@ -74,7 +74,7 @@ def index():
         pass
     items = Item.query.all()
     print(items)
-    return render_template('index.html')
+    return render_template('index.html', items = items)
 
 @app.route('/add', methods=['POST', 'GET'])
 def add():
