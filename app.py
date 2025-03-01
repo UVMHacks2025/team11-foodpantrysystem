@@ -74,7 +74,8 @@ def index():
     if request.method == 'POST':
         print("post")
         search = request.form['site-search']
-        #filters = request.form['']
+
+        remove = request.form
         results = Item.query.filter_by(itemName = search).all()
         print(results)
         return render_template('index.html', items = results)
@@ -87,6 +88,22 @@ def add():
     add_item()
     return render_template('add.html')
 
+@app.route('/plus/<int:id>', methods = ['POST', 'GET'])
+def plus(id):
+    plus = request.form['plus']
+    item = Item.query.get(id)
+    item.quantity += 1
+    db.session.commit()
+    return redirect("/")
+    
+@app.route('/minus/<int:id>', methods = ['POST', 'GET'])
+def minus(id):
+    minus = request.form['minus']
+    item = Item.query.get(id)
+    if item.quantity > 0:
+        item.quantity -= 1
+        db.session.commit()
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True, port=8005)
