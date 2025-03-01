@@ -34,7 +34,12 @@
         <th>quantity</th>
         <th>dietary restriction</th>
         <th>allergens</th>
-
+    </tr>
+    {% for item in items %}
+    <tr>
+        <td>{{item.itemName}}</td>
+    </tr>
+    {% endfor %}
 </table>
 
 {% endblock %}

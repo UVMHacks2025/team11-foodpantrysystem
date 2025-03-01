@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 
 def add_item(item):
-    conn = sqlite3.connect('RallyCatCupboardInventory.db')
+    conn = sqlite3.connect('rally_cat.db')
     cursor = conn.cursor()
     cursor.execute('''
 INSERT INTO Item (itemName, category, quantity, kosher, hallal, vegetarian, vegan, peanuts, gf, eggs, fish, soy, treenuts, shellfish)
@@ -16,7 +16,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     conn.close()
 
 def query_items(search, filters):
-    conn = sqlite3.connect('RallyCatCupboardInventory.db')
+    conn = sqlite3.connect('rally_cat.db')
     cursor = conn.cursor()
     
     #base query
@@ -69,12 +69,12 @@ class Item(db.Model):
 
 @app.route('/', methods = ['POST', 'GET'])
 def index():
-    #something was added or removed
-    if request.method == 'POST':
-        pass
+    # something was added or removed
+    #if method == 'POST':
+     #   function call to search
     items = Item.query.all()
     print(items)
-    return render_template('index.html')
+    return render_template('index.html', items = items)
 
 @app.route('/add', methods=['POST', 'GET'])
 def add():
