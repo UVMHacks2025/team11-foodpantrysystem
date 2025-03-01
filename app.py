@@ -10,5 +10,10 @@ db = SQLAlchemy(app)
 def index():
     return render_template('index.html')
 
+@app.route('/View')
+def View():
+    return render_template("View.html")
+    
+
 if __name__ == "__main__":
     app.run(debug=True, port=8005)
