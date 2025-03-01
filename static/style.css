@@ -5,8 +5,8 @@
 
 #logo{
   top:1%;
-  left:40%;
-  position: absolute;
+  text-align: center;
+  width: 500px;
 }
 nav{
   
@@ -46,7 +46,7 @@ tr:hover{
 }
 #head{
   margin-left:0;
-  background-color: #26912d;
+  background-color: #007155;
 }
 #head > td {
   margin:0%;
@@ -71,18 +71,20 @@ h1{
 
 .navbar {
     overflow: hidden;
-    background-color: #26912d;
+    background-color: #007155;
     font-family: Arial;
+    font-weight: bold;
   }
   
   /* Links inside the navbar */
   .navbar a {
     float: left;
-    font-size: 16px;
-    color: #F6E006;
+    font-size: 18px;
+    font-family: Lora;
+    color: #FFD416;
     text-align: center;
     padding: 14px 16px;
-    text-decoration: none;
+    text-decoration: none; 
   }
   
   /* The dropdown container */
@@ -93,13 +95,14 @@ h1{
   
   /* Dropdown button */
   .dropdown .dropbtn {
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     border: none;
     outline: none;
-    color: #F6E006;
+    color: #FFD416;
     padding: 14px 16px;
     background-color: inherit;
-    font-family: inherit; 
+    font-family: Lora;
     margin: 0; 
   }
   
@@ -109,7 +112,7 @@ h1{
   
   p a {
     color: black;
-    background-color: #F6E006;
+    background-color: #FFD416;
   }
   
   img {
@@ -122,7 +125,7 @@ h1{
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #F6E006;
+    background-color: #FFD416;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
