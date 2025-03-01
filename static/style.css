@@ -4,6 +4,8 @@
 
 
 #logo{
+  position: absolute;
+  left:40%;
   top:1%;
   text-align: center;
   width: 500px;
@@ -30,10 +32,21 @@ table{
   border: solid;
   
 }
-tr:hover{
-  transform: scale(1.5);
-  transform-origin: LEFT;
+
+td {
+  transition: transform 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+
+tr:hover td{
+  transform: scale(1.2);
+  transform-origin: left;
+  max-width: 50%;  
+  background-color: white;
+  margin-top:5%;
+  margin-bottom: 5%;
   
+ 
 }
 .plus, .minus{
   width: 2vh;

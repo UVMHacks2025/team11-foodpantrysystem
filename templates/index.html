@@ -60,21 +60,19 @@
             {% endif %}
         </td>
         <td>
-        {% if item.eggs == 1 %}
-         eggs <br>
-        {%endif %}
-        {% if item.fish == 1%}
-        fish <br>
-        {% endif %}
-        {%if item.soy == 1%}
-        soy<br>
-        {%endif%}
-        {% if item.treenuts == 1%}
-        treenuts <br>
-        {%endif%}
-        {% if items.shellfish == 1%}
-        shellfish <br>
-        {%endif%}
+            {% if item.eggs == 1 %}
+            eggs <br>
+            {% elif item.fish == 1%}
+            fish <br>
+            {%elif item.soy == 1%}
+            soy<br>
+            {%elif item.treenuts == 1%}
+            treenuts <br>
+            {%elif items.shellfish == 1%}
+            shellfish <br>
+            {%else%}
+            ⚫ <br>
+            {%endif%}
         </td>
     </tr>
     {% endfor %}
