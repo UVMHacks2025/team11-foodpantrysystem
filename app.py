@@ -70,8 +70,11 @@ class Item(db.Model):
 @app.route('/', methods = ['POST', 'GET'])
 def index():
     # something was added or removed
-    #if method == 'POST':
-     #   function call to search
+    if request.method == 'POST':
+        search = request.form['']
+        filters = request.form['']
+        results = query_items(search, filters)
+        return render_template('index.html', items = results)
     items = Item.query.all()
     print(items)
     return render_template('index.html', items = items)
