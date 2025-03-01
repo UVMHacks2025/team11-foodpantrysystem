@@ -32,13 +32,13 @@
     <tr>
         <th>Name</th>
         <th>Category</th>
-        <th>quantity</th>
-        <th>dietary restriction</th>
-        <th>allergens</th>
+        <th>Quantity</th>
+        <th>Dietary Restriction</th>
+        <th>Allergens</th>
     </tr>
     {% for item in items %}
     <tr>
-        <td>{{item.itemName}}  <button class = "plus" id ="+">+</button><button class = "minus" id = "-">-</button></td>
+        <td>{{item.itemName}} <button class = "plus" id ="+">+</button><button class = "minus" id = "-">-</button></td>
         <td>{{item.category}} </td>
         <td>{{item.quantity}} </td>
         <td>

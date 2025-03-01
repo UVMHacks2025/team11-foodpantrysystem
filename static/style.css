@@ -26,13 +26,13 @@ nav{
 table{
   margin-top: 5%;
   margin-left:10%;
+  margin-bottom: 5%;
   text-align:left;
   width:80%;
-  height:50%; 
+  height: 90%; 
   table-layout: fixed;
   background-color: white;
   border: solid;
-  
 }
 
 td {
