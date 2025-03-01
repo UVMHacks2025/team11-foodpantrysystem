@@ -30,6 +30,20 @@ table{
   border: solid;
   
 }
+tr:hover{
+  transform: scale(1.5);
+  transform-origin: LEFT;
+  
+}
+.plus, .minus{
+  width: 2vh;
+  height: 2vh;  
+  padding:0px;
+  
+}
+.plus{
+  margin-right:1%;
+}
 #head{
   margin-left:0;
   background-color: #26912d;
