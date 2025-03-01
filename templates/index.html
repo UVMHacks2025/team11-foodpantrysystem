@@ -2,6 +2,11 @@
 
 
 {% block body %}
+
+<img id = "logo" src = "../static/rally_cat_cupboard.png"></img>
+<h1 class = "title">Rally Cat’s Cupboard Inventory Tracker</h1>
+
+
 <nav class="navbar">
     <!-- Fix all urls -->
     <a href="/">Home</a>
@@ -16,7 +21,11 @@
     </div>
 </nav>
 
-<h1>Rally Cat’s Cupboard inventory tracker</h1>
+
+<label for="site-search">Search the site:</label>
+<input type="search" id="site-search" name="q" />
+
+<button>Search</button>
 
 <table>
     <tr>
