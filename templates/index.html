@@ -9,16 +9,8 @@
 
 <nav class="navbar">
     <!-- Fix all urls -->
-    <a href="/">Home</a>
-    <div class="dropdown">
-        <button class="dropbtn">Menu
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="http://127.0.0.1:5000/info">Inventory</a>
-            <a href="/add">Add</a>
-        </div>
-    </div>
+    <a href="/"></a>
+    
 </nav>
 
 
@@ -39,7 +31,7 @@
     </tr>
     {% for item in items %}
     <tr>
-        <td>{{item.itemName}}  <button class = "plus" id ="+">+</button><button class = "minus" id = "-">-</button></td>
+        <td>{{item.itemName}} <button class = "plus" id ="+">+</button><button class = "minus" id = "-">-</button></td>
         <td>{{item.category}} </td>
         <td>{{item.quantity}} </td>
         <td>
