@@ -22,6 +22,7 @@
 </nav>
 
 
+
 <label for="site-search">Search the site:</label>
 <input type="search" id="site-search" name="q" />
 
@@ -37,10 +38,48 @@
     </tr>
     {% for item in items %}
     <tr>
-        <td>{{item.itemName}}</td>
+        <td>{{item.itemName}}  <button class = "plus" id ="+">+</button><button class = "minus" id = "-">-</button></td>
+        <td>{{item.category}} </td>
+        <td>{{item.quantity}} </td>
+        <td>
+            {% if item.kosher == 1 %}
+                kosher <br>
+            {% endif %}
+            {% if item.hallal == 1 %}
+                hallal <br>
+            {% endif %}
+            {% if item.vegeterian == 1 %}
+                vegetarian <br>
+            {%endif%}
+            {% if item.vegan == 1 %}
+                vegan <br>
+            {% endif %}
+            {% if item.gf == 1 %}
+                gluten-free <br>
+            {% endif %}
+        </td>
+        <td>
+        {% if item.eggs == 1 %}
+         eggs <br>
+        {%endif %}
+        {% if item.fish == 1%}
+        fish <br>
+        {% endif %}
+        {%if item.soy == 1%}
+        soy<br>
+        {%endif%}
+        {% if item.treenuts == 1%}
+        treenuts <br>
+        {%endif%}
+        {% if items.shellfish == 1%}
+        shellfish <br>
+        {%endif%}
+        </td>
     </tr>
     {% endfor %}
 </table>
+
+
 
 {% endblock %}
 
