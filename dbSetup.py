@@ -1,6 +1,6 @@
 import sqlite3
-import csv
-import chardet
+import random
+from datetime import datetime, timedelta
 
 
 #connect to db
@@ -52,49 +52,63 @@ conn.commit()
 print("Recipe tables created successfully.")
 
 
-file_path = '.csv'  
 
-with open(file_path, newline='', encoding='utf-8-sig') as recipes:
-    reader = csv.DictReader(recipes)  #read as a dictionary 
+import sqlite3
+import random
+from datetime import datetime, timedelta
 
-    for row in reader:
-        #prepare data for insertion
-        recipe_id = row['id']
-        recipe_name = row['recipe_name']
-        instructions = row['instructions']
-        notes = row['notes']
-        spice = float(row['spice']) if row['spice'] else None
-        temp = float(row['temp']) if row['temp'] else None
-        likes = int(row['likes']) if row['likes'] else 0
-        dislikes = int(row['dislikes']) if row['dislikes'] else 0
-        aroma = row['aroma'] if row['aroma'] else None
-        taste = row['taste'] if row['taste'] else None
-        texture = row['texture'] if row['texture'] else None
-        plant_based = int(row['plantBased'])
-        gf = int(row['gf'])
-        vegan = int(row['vegan'])
-        made = int(row['made']) if row['made'] else 0
-        energy = float(row['energy']) if row['energy'] else None
-        cook_time = int(row['cook_time']) if row['cook_time'] else None
-        prep_time = int(row['prep_time']) if row['prep_time'] else None
-        servings = int(row['Servings']) if row['Servings'] else None
+# Connect to database
+conn = sqlite3.connect('RallyCatCupbaordInventory.db')
+cursor = conn.cursor()
 
+# Insert fake data into Item table
+items = [
+    ("Rice", "Grains", 50, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0),
+    ("Pasta", "Grains", 40, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0),
+    ("Peanut Butter", "Spreads", 30, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0),
+    ("Canned Tuna", "Canned Goods", 20, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0),
+    ("Almonds", "Nuts", 25, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0),
+    ("Milk", "Dairy", 15, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0),
+    ("Eggs", "Dairy", 30, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0),
+    ("Soy Milk", "Dairy Alternatives", 10, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0),
+    ("Bread", "Bakery", 20, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0),
+    ("Chicken Breast", "Meat", 25, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0),
+    ("Tofu", "Protein", 18, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0),
+    ("Lentils", "Legumes", 22, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0),
+    ("Canned Beans", "Canned Goods", 28, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0),
+    ("Yogurt", "Dairy", 12, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0),
+    ("Chocolate", "Snacks", 16, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0),
+    ("Granola Bars", "Snacks", 30, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0),
+    ("Tomato Sauce", "Condiments", 14, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0),
+    ("Apples", "Fruits", 35, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0),
+    ("Carrots", "Vegetables", 40, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0),
+    ("Orange Juice", "Beverages", 18, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0)
+]
 
-        # Insert data into the Recipes table
-        cursor.execute('''
-            INSERT INTO Recipes (
-                recipe_id, recipeName, instructions, notes, spice, temp, likes, dislikes, aroma,
-                taste, texture, plantBased, gf, vegan, made, energy, cookTime, prepTime, servings
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ''', (
-            recipe_id, recipe_name, instructions, notes, spice, temp, likes, dislikes, aroma,
-            taste, texture, plant_based, gf, vegan, made, energy, cook_time, prep_time, servings
-        ))
-conn.commit()
-conn.close()
-
-print("Recipes inserted successfully!")
+cursor.executemany('''
+INSERT INTO Item (itemName, category, quantity, kosher, hallal, vegetarian, vegan, peanuts, gf, eggs, fish, soy, treenuts, shellfish)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+''', items)
 
 conn.commit()
+
+# Insert fake data into Batch table
+batch_entries = []
+for i in range(1, 21):
+    batch_id = random.randint(1000, 9999)
+    item_id = i
+    date_of_entry = (datetime.now() - timedelta(days=random.randint(1, 100))).strftime("%Y-%m-%d")
+    quantity = random.randint(5, 50)
+    location = random.choice(["Shelf A", "Shelf B", "Freezer", "Refrigerator", "Back Storage"])
+    batch_entries.append((batch_id, item_id, date_of_entry, quantity, location))
+
+cursor.executemany('''
+INSERT INTO Batch (batch_id, item_id, date_of_entry, quantity, location)
+VALUES (?, ?, ?, ?, ?)
+''', batch_entries)
+
+conn.commit()
+
+print("Fake data inserted successfully.")
 conn.close()
 
