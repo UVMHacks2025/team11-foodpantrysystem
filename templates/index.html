@@ -38,6 +38,25 @@
     {% for item in items %}
     <tr>
         <td>{{item.itemName}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.quantity}}</td>
+        <td>
+        {% if item.kosher == 1 %}
+        kosher <br>
+        {% endif %}
+        {% if item.hallal == 1 %}
+        hallal <br>
+        {% endif %}
+        {% if item.vegeterian == 1 %}
+        vegetarian <br>
+        {%endif%}
+        {% if item.vegan == 1 %}
+        vegan <br>
+        {% endif %}
+        {% if item.gf == 1 %}
+        gluten-free <br>
+        {% endif %}
+        </td>
     </tr>
     {% endfor %}
 </table>
