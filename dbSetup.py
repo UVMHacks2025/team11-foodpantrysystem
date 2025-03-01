@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 
 #connect to db
-conn = sqlite3.connect('RallyCatCupbaordInventory.db')
+conn = sqlite3.connect('rally_cat.db')
 cursor = conn.cursor()
 
 #--------------UNCOMMENT IF NEED TO CHANGE THE TABLE SETUP----------------
@@ -49,7 +49,6 @@ CREATE TABLE IF NOT EXISTS Batch (
 
 conn.commit()
 #tables created
-print("Recipe tables created successfully.")
 
 
 
@@ -58,7 +57,7 @@ import random
 from datetime import datetime, timedelta
 
 # Connect to database
-conn = sqlite3.connect('RallyCatCupbaordInventory.db')
+conn = sqlite3.connect('rally_cat.db')
 cursor = conn.cursor()
 
 # Insert fake data into Item table
