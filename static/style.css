@@ -43,8 +43,8 @@ tr:hover td{
   transform-origin: left;
   max-width: 50%;  
   background-color: white;
-  padding-top:2%;
-  padding-bottom: 2%;
+  margin-top:5%;
+  margin-bottom: 5%;
   
  
 }
