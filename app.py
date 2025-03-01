@@ -65,8 +65,8 @@ class Item(db.Model):
     def __repr__(self):
         return f'<Item {self.itemName}>'
     
-with app.app_context():
-    db.create_all()
+#with app.app_context():
+    #db.create_all()
 
 @app.route('/', methods = ['POST', 'GET'])
 def index():
@@ -74,8 +74,7 @@ def index():
     if request.method == 'POST':
         print("post")
         search = request.form['site-search']
-
-        remove = request.form
+        #filters = request.form['']
         results = Item.query.filter_by(itemName = search).all()
         print(results)
         return render_template('index.html', items = results)
@@ -85,68 +84,9 @@ def index():
 
 @app.route('/add', methods=['POST', 'GET'])
 def add():
-    if request.method == 'POST':
-        item_name = request.form['itemName']
-        category = request.form['category']
-        quantity = int(request.form['quantity'])
-
-        #convert checkboxes to binary
-        kosher = int('kosher' in request.form)
-        hallal = int('hallal' in request.form)
-        vegetarian = int('vegetarian' in request.form)
-        vegan = int('vegan' in request.form)
-        peanuts = int('peanuts' in request.form)
-        gf = int('gf' in request.form)
-        eggs = int('eggs' in request.form)
-        fish = int('fish' in request.form)
-        soy = int('soy' in request.form)
-        treenuts = int('treenuts' in request.form)
-        shellfish = int('shellfish' in request.form)
-
-        #check for duplicates
-        existing_item = Item.query.filter_by(itemName=item_name).first()
-        if existing_item:
-            return render_template('add.html', message="Item already exists!")
-
-        #add item
-        new_item = Item(
-            itemName=item_name,
-            category=category,
-            quantity=quantity,
-            kosher=kosher,
-            hallal=hallal,
-            vegetarian=vegetarian,
-            vegan=vegan,
-            peanuts=peanuts,
-            gf=gf,
-            eggs=eggs,
-            fish=fish,
-            soy=soy,
-            treenuts=treenuts,
-            shellfish=shellfish
-        )
-        db.session.add(new_item)
-        db.session.commit()
-        return redirect(url_for('index'))
-
+    add_item()
     return render_template('add.html')
 
-@app.route('/plus/<int:id>', methods = ['POST', 'GET'])
-def plus(id):
-    plus = request.form['plus']
-    item = Item.query.get(id)
-    item.quantity += 1
-    db.session.commit()
-    return redirect("/")
-    
-@app.route('/minus/<int:id>', methods = ['POST', 'GET'])
-def minus(id):
-    minus = request.form['minus']
-    item = Item.query.get(id)
-    if item.quantity > 0:
-        item.quantity -= 1
-        db.session.commit()
-    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True, port=8005)
